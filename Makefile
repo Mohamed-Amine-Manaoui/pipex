@@ -1,8 +1,8 @@
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address 
 
-SRC = pipex.c ft_malloc.c
+SRC = pipex.c ft_malloc.c pipex_utils.c valid_paths.c
 
 OBJ = $(SRC:.c=.o)
 
