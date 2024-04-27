@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 02:40:58 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/04/26 22:03:13 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/04/27 06:44:36 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,15 @@ int	main(int ac, char **av, char **env)
 	if (pid_1 == 0)
 	{
 		infile = open(av[1], O_RDONLY, 0777);
+		if (infile == -1)
+		{
+			perror("file");
+			exit(1);
+		}
 		if (valid_path(av[2], env))
 		{
 			perror("path");
+			exit(1);
 		}
 		close(fd[0]);
 		dup2(infile, STDIN_FILENO);
@@ -92,14 +98,15 @@ int	main(int ac, char **av, char **env)
 		if (valid_path(av[3], env))
 		{
 			perror("path");
+			exit(1);
 		}
 		dup2(fd[0], STDIN_FILENO);
 		dup2(outfile, STDOUT_FILENO);
 		close(fd[1]);
-		close(outfile); // ?
+		close(outfile);
 		close(fd[0]);
 		execve(search_path(av[3], env), split_cmd(av[3]), env);
-		exit(1);
+		perror("execve");
 	}
 	return (0);
 }
