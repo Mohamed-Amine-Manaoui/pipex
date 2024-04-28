@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:06:50 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/04/26 08:45:14 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/04/28 00:42:58 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,38 @@ char	*ft_strjoin(char *s1, char *s2)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
 char	*handle_cmds(char *cmd)
 {
 	char	*tst;
+	char	**split_tst;
+	int		i;
+
+	if (cmd[1] == 'U')
+	{
+		write(1, "pipex: permission denied: ", 26);
+		write(1, cmd, ft_strlen(cmd));
+		write(1, "\n", 1);
+		exit(1);
+	}
+	i = ft_strlen(cmd) - 1;
+	while (i >= 0)
+	{
+		if (cmd[i] == '/' && cmd[i - 1] != '.')
+		{
+			tst = ft_substr(cmd, i + 1, ft_strlen(cmd) - 1);
+			split_tst = ft_split(tst, ' ');
+			return (split_tst[0]);
+		}
+		i--;
+	}
+	return (cmd);
+}
+
+char	*handle_cmds_2(char *cmd)
+{
+	char	*tst;
+	char	**split_tst;
 	int		i;
 
 	i = ft_strlen(cmd) - 1;
@@ -48,6 +77,11 @@ char	*handle_cmds(char *cmd)
 		if (cmd[i] == '/')
 		{
 			tst = ft_substr(cmd, i + 1, ft_strlen(cmd) - 1);
+			break ;
+		}
+		else if (cmd[i] == '.' && cmd[i - 1] == '/')
+		{
+			tst = ft_substr(cmd, i, ft_strlen(cmd) - 1);
 			break ;
 		}
 		i--;
@@ -76,6 +110,11 @@ int	valid_path(char *cmd1, char **env)
 				if (cmd1[0] == '/')
 				{
 					cmd1 = handle_cmds(cmd1);
+				}
+				else if (cmd1[0] == '.' && cmd1[1] == '/')
+				{
+					if (access(cmd1, F_OK) == 0)
+						return (0);
 				}
 				join = ft_strjoin(path_split[j], "/");
 				join = ft_strjoin(join, cmd1);
