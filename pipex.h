@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 02:33:58 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/04/27 11:55:40 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/04/28 22:10:21 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char				**ft_split(char *s, char c);
 int					ft_strncmp(char *s1, char *s2, int n);
 char				*ft_substr(char *s, int start, int len);
 int					ft_strlen(char *s);
-int					valid_path(char *cmd1, char **env);
+int					valid_path(const char *cmd1, char **env);
 char				*ft_strjoin(char *s1, char *s2);
 char				*handle_cmds(char *cmd);
 char				*handle_cmds_2(char *cmd);

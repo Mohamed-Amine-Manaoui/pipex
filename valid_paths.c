@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:06:50 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/04/28 00:42:58 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/04/29 07:06:19 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*handle_cmds(char *cmd)
 	i = ft_strlen(cmd) - 1;
 	while (i >= 0)
 	{
-		if (cmd[i] == '/' && cmd[i - 1] != '.')
+		if (cmd[i] == '/')
 		{
 			tst = ft_substr(cmd, i + 1, ft_strlen(cmd) - 1);
 			split_tst = ft_split(tst, ' ');
@@ -89,16 +89,19 @@ char	*handle_cmds_2(char *cmd)
 	return (tst);
 }
 
-int	valid_path(char *cmd1, char **env)
+int	valid_path(const char *cmd1, char **env)
 {
 	char	*path;
 	char	**path_split;
+	char	**cmd_split;
 	char	*join;
+	char    *cmd2;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
+	cmd2 = (char *)cmd1;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PATH=", 5) == 1)
@@ -107,20 +110,30 @@ int	valid_path(char *cmd1, char **env)
 			path_split = ft_split(path, ':');
 			while (path_split[j])
 			{
-				if (cmd1[0] == '/')
+				if (cmd2[0] == '/')
 				{
-					cmd1 = handle_cmds(cmd1);
+					cmd1 = handle_cmds((char *)cmd1);
+					join = ft_strjoin(path_split[j], "/");
+					join = ft_strjoin(join, (char *)cmd1);
+					if (access(join, F_OK) == 0)
+					{
+						return (0); // Success
+					}
 				}
 				else if (cmd1[0] == '.' && cmd1[1] == '/')
 				{
 					if (access(cmd1, F_OK) == 0)
 						return (0);
 				}
-				join = ft_strjoin(path_split[j], "/");
-				join = ft_strjoin(join, cmd1);
-				if (access(join, F_OK) == 0)
+				else
 				{
-					return (0); // Success
+					cmd_split = ft_split((char *)cmd1, ' ');
+					join = ft_strjoin(path_split[j], "/");
+					join = ft_strjoin(join, cmd_split[0]);
+					if (access(join, F_OK) == 0)
+					{
+						return (0);
+					}
 				}
 				j++;
 			}
