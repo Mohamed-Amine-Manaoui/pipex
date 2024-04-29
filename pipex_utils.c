@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 09:10:12 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/04/25 11:08:28 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:20:02 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	ft_strncmp(char *s1, char *s2, int n)
 {
-    int	i;
+	int	i;
 
-    i = 0;
-    while (s1[i] && s2[i] && i < n)
-    {
-        if (s1[i] != s2[i])
-            return (0);
-        i++;
-    }
-    if (i == n)
-        return (1);
-    return (0);
+	i = 0;
+	while (s1[i] && s2[i] && i < n)
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	if (i == n)
+		return (1);
+	return (0);
 }
 
 int	ft_strlen(char *s)
@@ -99,8 +99,10 @@ char	**ft_split(char *s, char c)
 		return (NULL);
 	while (s[i])
 	{
-		if (s[i] == c)
+		while (s[i] == c)
 			i++;
+		if (s[i] == '\0')
+			break ;
 		j = 0;
 		while (s[i] && s[i] != c && j++ > -1)
 			i++;
