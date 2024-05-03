@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:06:50 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/04/29 20:23:56 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:48:53 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ char	*handle_cmds(char *cmd)
 
 	if (cmd[1] == 'U')
 	{
-		write(1, "pipex: permission denied: ", 26);
-		write(1, cmd, ft_strlen(cmd));
-		write(1, "\n", 1);
+		write(2, "pipex: permission denied: ", 26);
+		write(2, cmd, ft_strlen(cmd));
+		write(2, "\n", 1);
 		exit(1);
 	}
 	i = ft_strlen(cmd) - 1;
@@ -116,18 +116,14 @@ int	valid_path(const char *cmd1, char **env)
 					cmd_split = ft_split((char *)cmd1, ' ');
 					if (access(cmd_split[0], F_OK) == 0)
 					{
-						// printf("1\n");
 						return (0);
 					}
 					else
 					{
-						printf("2\n");
-						// printf("cmd1: %s\n", cmd1);
 						cmd1 = handle_cmds((char *)cmd1);
 						cmd_split = ft_split((char *)cmd1, ' ');
 						join = ft_strjoin(path_split[j], "/");
 						join = ft_strjoin(join, cmd_split[0]);
-						// printf("join: %s\n", join);
 						if (access(cmd1, F_OK) == 0)
 						{
 							return (0); // Success
@@ -141,7 +137,6 @@ int	valid_path(const char *cmd1, char **env)
 				}
 				else
 				{
-					// printf("3\n");
 					cmd_split = ft_split((char *)cmd1, ' ');
 					join = ft_strjoin(path_split[j], "/");
 					join = ft_strjoin(join, cmd_split[0]);
@@ -151,6 +146,14 @@ int	valid_path(const char *cmd1, char **env)
 					}
 				}
 				j++;
+			}
+		}
+		// new_in_this_code
+		else
+		{
+			if (access(cmd1, F_OK) == 0)
+			{
+				return 0;
 			}
 		}
 		i++;
