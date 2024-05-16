@@ -1,6 +1,11 @@
 with path :
-tab; \n ; \f; \v; \t;   ;
++ message error !!!!
 
 with path == NULL :
 
-tab; \n ; \f; \v; \t;   ;
++ message error !!!!
+
+exit value in bonus
+
+
+here_doc : (lim) == "" ???
