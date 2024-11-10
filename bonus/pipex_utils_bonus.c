@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:12:19 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/16 22:40:59 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:08:39 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	valid_argument_bonus(int ac, char **av, t_help *help)
 	{
 		write(2, "Bad argument :\n", 13);
 		write(2, "Usage: ./pipex infile cmd1 cmd2 ... outfile\n", 45);
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 	if (av[2][0] == '\0')
 	{
 		write(2, "syntax error near unexpected token |\n", 37);
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 }
 
@@ -39,7 +39,7 @@ void	pipe_fds(t_help *help, int ac)
 		if (pipe(help->fds[i]) == -1)
 		{
 			perror("pipe");
-			exit(1);
+			(ft_malloc (0, 'f'), exit(1));
 		}
 		i++;
 	}

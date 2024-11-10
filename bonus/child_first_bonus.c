@@ -6,11 +6,23 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:08:53 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/16 22:39:43 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:34:45 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	if (!s1 || !s2)
+		return (0);
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
+}
 
 /// @brief duplicate the files descriptors and close it
 void	duplicate_for_ch1_b(int ac, t_help *help)
@@ -34,7 +46,7 @@ void	path_not_valid_ch1_b(char **av)
 		write(2, av[2], ft_strlen(av[2]));
 		write(2, ": command not found\n", 20);
 	}
-	exit(1);
+	(ft_malloc(0, 'f'), exit(1));
 }
 
 /// @brief This function is used to handle the case where the path is null
@@ -46,7 +58,7 @@ void	path_null_ch1_b(char **av, char **env, t_help *help, int ac)
 		duplicate_for_ch1_b(ac, help);
 		execve(search_path(help->split_tst[0], env), split_cmd(av[2]), env);
 		perror("execve");
-		exit(1);
+		(ft_malloc(0, 'f'), exit(1));
 	}
 	else
 	{
@@ -55,14 +67,14 @@ void	path_null_ch1_b(char **av, char **env, t_help *help, int ac)
 			write(2, "no such file or directory: ", 27);
 			write(2, av[2], ft_strlen(av[2]));
 			write(2, "\n", 1);
-			exit(127);
+			(ft_malloc(0, 'f'), exit(127));
 		}
 		else
 		{
 			write(2, "command not found: ", 19);
 			write(2, av[2], ft_strlen(av[2]));
 			write(2, "\n", 1);
-			exit(127);
+			(ft_malloc(0, 'f'), exit(127));
 		}
 	}
 }
@@ -76,10 +88,10 @@ void	child_first_bonus(int ac, char **av, char **env, t_help *help)
 	{
 		dprintf(2, "pipe\n");
 		perror(av[1]);
-		exit(1);
+		(ft_malloc(0, 'f'), exit(1));
 	}
 	if (av[2][0] == '\0')
-		exit(1);
+		(ft_malloc(0, 'f'), exit(1));
 	if (find_path(env) == NULL)
 	{
 		path_null_ch1_b(av, env, help, ac);
@@ -91,5 +103,5 @@ void	child_first_bonus(int ac, char **av, char **env, t_help *help)
 	duplicate_for_ch1_b(ac, help);
 	execve(search_path((const char *)av[2], env), split_cmd(av[2]), env);
 	perror("execve");
-	exit(1);
+	(ft_malloc(0, 'f'), exit(1));
 }

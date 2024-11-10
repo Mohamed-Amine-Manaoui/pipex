@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:09:09 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/15 19:04:50 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:08:39 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	path_not_valid_chn_b(char **av, int i)
 		write(2, av[i + 2], ft_strlen(av[i + 2]));
 		write(2, " :command not found\n", 20);
 	}
-	exit(127);
+	(ft_malloc (0, 'f'), exit(127));
 }
 
 void	path_null_chn_b(char **av, char **env, int ac, t_help *help)
@@ -43,7 +43,7 @@ void	path_null_chn_b(char **av, char **env, int ac, t_help *help)
 		execve(search_path(help->split_tst[0], env), split_cmd(av[help->i + 2]),
 			env);
 		perror("execve");
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 	else
 	{
@@ -52,13 +52,13 @@ void	path_null_chn_b(char **av, char **env, int ac, t_help *help)
 			write(2, "no such file or directory: ", 27);
 			write(2, av[help->i + 2], ft_strlen(av[help->i + 2]));
 			write(2, "\n", 1);
-			exit(127);
+			(ft_malloc (0, 'f'), exit(127));
 		}
 		else
 		{
 			write(2, "command not found: ", 19);
 			write(2, av[help->i + 2], ft_strlen(av[help->i + 2]));
-			exit(127);
+			(ft_malloc (0, 'f'), exit(127));
 		}
 	}
 }
@@ -78,5 +78,5 @@ void	child_n_bonus(int ac, char **av, char **env, t_help *help)
 	duplicate_for_chn_b(help, ac);
 	execve(search_path(av[help->i + 2], env), split_cmd(av[help->i + 2]), env);
 	perror("execve2222");
-	exit(1);
+	(ft_malloc (0, 'f'), exit(1));
 }

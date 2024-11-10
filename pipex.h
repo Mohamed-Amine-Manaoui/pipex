@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 02:33:58 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/16 22:41:14 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:33:32 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
 
 typedef struct s_malloc
@@ -55,6 +57,7 @@ void				valid_argument(t_help *help, int ac);
 void				check_pipe(int *fd);
 void				check_pid(int pid);
 // bonus
+int					ft_strcmp(char *s1, char *s2);
 void				path_null_ch1_b(char **av, char **env, t_help *help,
 						int ac);
 void				ft_close(int **fds, int ac);

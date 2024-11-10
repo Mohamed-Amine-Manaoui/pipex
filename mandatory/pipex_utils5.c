@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:33:52 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/15 19:58:10 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:08:39 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*handle_cmds(char *cmd)
 		write(2, "pipex: permission denied: ", 26);
 		write(2, cmd, ft_strlen(cmd));
 		write(2, "\n", 1);
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 	i = ft_strlen(cmd) - 1;
 	while (i >= 0)

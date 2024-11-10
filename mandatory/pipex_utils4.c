@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 21:23:06 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/16 20:48:59 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:05:51 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ char	*else_true_path(const char *cmd1, char **env, int i)
 		{
 			write(2, (char *)cmd1, ft_strlen((char *)cmd1));
 			write(2, ": no such file or directory\n", 28);
-			exit(127);
+			(ft_malloc (0, 'f'), exit(127));
 		}
 		else
 		{
 			write(2, (char *)cmd1, ft_strlen((char *)cmd1));
 			write(2, ": command not found\n", 20);
-			exit(127);
+			(ft_malloc (0, 'f'), exit(127));
 		}
 	}
 	return (NULL);

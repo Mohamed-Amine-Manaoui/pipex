@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 15:55:52 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/15 21:55:19 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:10:10 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int ac, char **av, char **env)
 	t_help	help;
 
 	allocate_memory_bonus(ac, &help);
-	valid_argument_bonus(ac, &help);
+	valid_argument_bonus(ac, av, &help);
 	pipe_fds(&help, ac);
 	if (ft_strncmp(av[1], "here_doc", 8))
 	{

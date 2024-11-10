@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 16:56:24 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/15 20:08:25 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:59:29 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ char	*find_path(char **env)
 char	*search_path(const char *cmd1, char **env)
 {
 	char	**path_split;
-	char	*cmd2;
 
-	cmd2 = (char *)cmd1;
 	path_split = NULL;
 	if (find_path(env) == NULL)
 		return ((char *)cmd1);

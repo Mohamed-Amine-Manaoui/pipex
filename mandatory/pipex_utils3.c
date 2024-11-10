@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 21:06:08 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/15 18:45:49 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:08:39 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	valid_argument(t_help *help, int ac)
 	{
 		write(2, "Bad argument :\n", 13);
 		write(2, "Usage: ./pipex infile cmd1 cmd2 outfile\n", 40);
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 }
 
@@ -33,7 +33,7 @@ void	check_pipe(int *fd)
 	if (pipe(fd) == -1)
 	{
 		perror("pipe");
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 }
 
@@ -43,6 +43,6 @@ void	check_pid(int pid)
 	if (pid < 0)
 	{
 		perror("fork");
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 }

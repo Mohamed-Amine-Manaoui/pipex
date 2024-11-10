@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:49:56 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/16 22:40:09 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:34:33 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	path_null_ch1_here_b(char **av, char **env, t_help *help, int ac)
 		duplicate_for_ch1_b(ac, help);
 		execve(search_path(help->split_tst[0], env), split_cmd(av[3]), env);
 		perror("execve");
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 	else
 	{
@@ -29,14 +29,14 @@ void	path_null_ch1_here_b(char **av, char **env, t_help *help, int ac)
 			write(2, "no such file or directory: ", 27);
 			write(2, av[3], ft_strlen(av[3]));
 			write(2, "\n", 1);
-			exit(127);
+			(ft_malloc (0, 'f'), exit(127));
 		}
 		else
 		{
 			write(2, "command not found: ", 19);
 			write(2, av[3], ft_strlen(av[3]));
 			write(2, "\n", 1);
-			exit(127);
+			(ft_malloc (0, 'f'), exit(127));
 		}
 	}
 }
@@ -44,7 +44,7 @@ void	path_null_ch1_here_b(char **av, char **env, t_help *help, int ac)
 void	child_first_here_bonus(int ac, char **av, char **env, t_help *help)
 {
 	if (av[3][0] == '\0')
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	if (find_path(env) == NULL)
 	{
 		path_null_ch1_here_b(av, env, help, ac);
@@ -56,7 +56,7 @@ void	child_first_here_bonus(int ac, char **av, char **env, t_help *help)
 	duplicate_for_ch1_b(ac, help);
 	execve(search_path((const char *)av[3], env), split_cmd(av[3]), env);
 	perror("execve");
-	exit(1);
+	(ft_malloc (0, 'f'), exit(1));
 }
 
 void	multiple_pipe_here(int ac, char **av, char **env, t_help *help)
@@ -93,15 +93,17 @@ void	_here_doc(int ac, char **av, char **env, t_help *help)
 	if (pipe(help->fd_doc) == -1)
 	{
 		perror("pipe");
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
-	valid_argument_bonus(ac, help);
+	valid_argument_bonus(ac, av, help);
 	write(1, "> ", 2);
 	line = get_next_line(0);
 	while (line)
 	{
-		if (ft_strncmp(line, av[2], ft_strlen(av[2])))
+		if (ft_strcmp(ft_strtrim(line, "\n"), av[2]) == 0)
+		{
 			break ;
+		}
 		write(help->fd_doc[1], line, ft_strlen(line));
 		write(help->fd_doc[1], "\n", 1);
 		free(line);

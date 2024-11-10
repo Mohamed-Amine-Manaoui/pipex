@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 20:27:33 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/03 22:26:30 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:24:57 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(char *str);
 char	*ft_strdup(char *src);
 char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_strtrim(char const *s1, char const *set);
 
 #endif

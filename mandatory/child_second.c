@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 20:38:58 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/16 22:27:47 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:08:39 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	path_null_ch2(t_help *help, char **av, char **env, int ac)
 		execve(search_path(help->split_tst[0], env), split_cmd(av[ac - 2]),
 			env);
 		perror("execve");
-		exit(127);
+		(ft_malloc (0, 'f'), exit(127));
 	}
 	else
 	{
@@ -43,13 +43,13 @@ void	path_null_ch2(t_help *help, char **av, char **env, int ac)
 			write(2, av[ac - 2], ft_strlen(av[ac - 2]));
 			write(2, ": no such file or directory", 27);
 			write(2, "\n", 1);
-			exit(127);
+			(ft_malloc (0, 'f'), exit(127));
 		}
 		else
 		{
 			write(2, av[ac - 2], ft_strlen(av[ac - 2]));
 			write(2, ": no such file or directory\n", 28);
-			exit(127);
+			(ft_malloc (0, 'f'), exit(127));
 		}
 	}
 }
@@ -68,7 +68,7 @@ void	path_not_valid_ch2(char **av, int ac)
 		write(2, av[ac - 2], ft_strlen(av[ac - 2]));
 		write(2, " :command not found\n", 20);
 	}
-	exit(127);
+	(ft_malloc(0, 'f'), exit(127));
 }
 
 /// @brief This function is used to
@@ -81,7 +81,7 @@ void	child_2(t_help *help, char **av, char **env, int ac)
 	if (help->outfile == -1)
 	{
 		perror(av[ac - 1]);
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 	if (find_path(env) == NULL)
 	{
@@ -94,6 +94,6 @@ void	child_2(t_help *help, char **av, char **env, int ac)
 	duplicatite_for_ch2(help);
 	execve(search_path(av[ac - 2], env), split_cmd(av[ac - 2]), env);
 	perror("execve");
-	exit(1);
+	(ft_malloc (0, 'f'), exit(1));
 }
 //./pipex infile cmd1 cmd2 outfile

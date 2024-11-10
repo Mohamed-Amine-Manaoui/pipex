@@ -6,7 +6,7 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:20:12 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/16 20:39:14 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:08:39 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	path_null_ch1(t_help *help, char **av, char **env)
 		duplicatite_for_ch1(help);
 		execve(search_path(help->split_tst[0], env), split_cmd(av[2]), env);
 		perror("execve");
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 	else
 	{
@@ -42,14 +42,14 @@ void	path_null_ch1(t_help *help, char **av, char **env)
 			write(2, av[2], ft_strlen(av[2]));
 			write(2, ": no such file or directory", 27);
 			write(2, "\n", 1);
-			exit(127);
+			(ft_malloc (0, 'f'), exit(127));
 		}
 		else
 		{
 			write(2, av[2], ft_strlen(av[2]));
 			write(2, ": no such file or directory", 27);
 			write(2, "\n", 1);
-			exit(127);
+			(ft_malloc (0, 'f'), exit(127));
 		}
 	}
 }
@@ -68,7 +68,7 @@ void	path_not_valid_ch1(char **av)
 		write(2, av[2], ft_strlen(av[2]));
 		write(2, ": command not found\n", 20);
 	}
-	exit(1);
+	(ft_malloc (0, 'f'), exit(1));
 }
 
 /// @brief This function is used to
@@ -81,7 +81,7 @@ void	child_1(t_help *help, char **av, char **env)
 	if (help->infile == -1)
 	{
 		perror(av[1]);
-		exit(1);
+		(ft_malloc (0, 'f'), exit(1));
 	}
 	if (find_path(env) == NULL)
 	{
@@ -94,5 +94,5 @@ void	child_1(t_help *help, char **av, char **env)
 	duplicatite_for_ch1(help);
 	execve(search_path((const char *)av[2], env), split_cmd(av[2]), env);
 	perror("execve");
-	exit(1);
+	(ft_malloc (0, 'f'), exit(1));
 }

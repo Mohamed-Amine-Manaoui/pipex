@@ -6,16 +6,29 @@
 /*   By: mmanaoui <mmanaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 20:26:59 by mmanaoui          #+#    #+#             */
-/*   Updated: 2024/05/03 22:14:48 by mmanaoui         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:23:53 by mmanaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	i;
+
+	if (!s1 || !set)
+		return (NULL);
+	while (ft_strchr(set, *s1) && *s1 != '\0')
+		s1++;
+	i = ft_strlen((char *)s1);
+	while (ft_strchr(set, s1[i]) && i != 0)
+		i--;
+	return (ft_substr((char *)s1, 0, i + 1));
+}
+
 char	*ft_lines(int fd, char *ptr)
 {
 	char	*buffer;
-	char	*tmp;
 	ssize_t	n_byte;
 
 	buffer = ft_malloc((size_t)BUFFER_SIZE + 1, 'm');
@@ -28,7 +41,6 @@ char	*ft_lines(int fd, char *ptr)
 		if (n_byte == -1)
 			return (NULL);
 		buffer[n_byte] = '\0';
-		tmp = ptr;
 		ptr = ft_strjoin(ptr, buffer);
 		if (!ptr)
 			return (NULL);
